@@ -1,0 +1,12 @@
+# melos_managed_dependency_overrides: app_module,core,feature_weather,splash_module,theme_handler
+dependency_overrides:
+  app_module:
+    path: ../../packages/features/app_module
+  core:
+    path: ../../packages/core
+  feature_weather:
+    path: ../../packages/features/feature_weather
+  splash_module:
+    path: ../../packages/features/splash_module
+  theme_handler:
+    path: ../../packages/theme_handler

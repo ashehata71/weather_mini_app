@@ -1,0 +1,6 @@
+name: weather_mini_app
+
+packages:
+  - apps/*
+  - packages/*
+  - packages/features/*

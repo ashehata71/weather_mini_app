@@ -1,0 +1,8 @@
+# melos_managed_dependency_overrides: core,feature_weather,theme_handler
+dependency_overrides:
+  core:
+    path: ../../core
+  feature_weather:
+    path: ../feature_weather
+  theme_handler:
+    path: ../../theme_handler

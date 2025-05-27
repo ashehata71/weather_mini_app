@@ -1,0 +1,6 @@
+# melos_managed_dependency_overrides: core,theme_handler
+dependency_overrides:
+  core:
+    path: ../../core
+  theme_handler:
+    path: ../../theme_handler
