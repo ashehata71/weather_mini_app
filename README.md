@@ -8,7 +8,7 @@ A Flutter-based mini weather application designed to demonstrate modular archite
 * Modularized structure using Melos for monorepo management and Flutter Modular.
 * Implements Clean Architecture (Data, Domain, Presentation layers).
 * Dependency Injection using GetIt.
-* State management (User to specify: e.g., BLoC, Provider, GetX).
+* State management using BLoC.
 * Offline support with basic caching of weather data using Shared Preferences.
 * Responsive UI for displaying weather information.
 * Settings screen with a dark/light mode toggle (User to confirm implementation).
