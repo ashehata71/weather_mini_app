@@ -11,7 +11,7 @@ A Flutter-based mini weather application designed to demonstrate modular archite
 * State management using BLoC.
 * Offline support with basic caching of weather data using Shared Preferences.
 * Responsive UI for displaying weather information.
-* Settings screen with a dark/light mode toggle (User to confirm implementation).
+* Settings screen with a dark/light mode toggle.
 * Device battery level display on the settings screen via a Method Channel.
 
 ## Project Structure
@@ -70,7 +70,7 @@ The application's architecture was designed based on the following principles an
 
 1.  **Clone the Repository**:
     ```bash
-    git clone [https://github.com/ashehata71/weather_mini_app.git](https://github.com/ashehata71/weather_mini_app.git)
+    git clone https://github.com/ashehata71/weather_mini_app.git
     cd weather_mini_app
     ```
 
@@ -91,9 +91,4 @@ The application's architecture was designed based on the following principles an
     ```bash
     cd apps/weather_app
     flutter run
-    ```
-    Alternatively, you might have Melos scripts configured in `melos.yaml` to run the app. For example:
-    ```bash
-    # If a script like 'run_app' is defined in melos.yaml
-    # melos run run_app
     ```
