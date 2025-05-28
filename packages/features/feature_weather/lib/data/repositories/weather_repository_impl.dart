@@ -5,7 +5,6 @@ import 'package:feature_weather/data/data_sources/local_data_source.dart';
 import 'package:feature_weather/data/data_sources/remote_data_source.dart';
 import 'package:feature_weather/data/models/weather_model.dart';
 import 'package:feature_weather/domain/repositories/weather_repository.dart';
-import 'package:geolocator/geolocator.dart';
 
 class WeatherRepositoryImpl implements IWeatherRepository {
   final IWeatherRemoteDataSource _remoteDataSource;
@@ -18,16 +17,14 @@ class WeatherRepositoryImpl implements IWeatherRepository {
         _localDataSource = localDataSource;
 
   @override
-  Future<Either<BaseFailure, WeatherModel>> getCurrentWeather() async {
+  Future<Either<BaseFailure, WeatherModel>> getCurrentWeather(
+      {required double lat, required double long}) async {
     try {
-      Position position = await getCurrentLocation();
-      final latitude = position.latitude;
-      final longitude = position.longitude;
-      final remoteResult = await _remoteDataSource.getCurrentWeather(latitude, longitude);
+      final remoteResult = await _remoteDataSource.getCurrentWeather(lat, long);
 
       return remoteResult.fold(
         (failure) async {
-          final localResult = await _localDataSource.getLastWeather(latitude, longitude);
+          final localResult = await _localDataSource.getLastWeather(lat, long);
           return localResult.fold(
             (cacheFailure) {
               return Left(failure);
@@ -57,31 +54,5 @@ class WeatherRepositoryImpl implements IWeatherRepository {
         ServerFailure(message: 'Network error and no cached data available.'),
       );
     }
-  }
-
-  Future<Position> getCurrentLocation() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      throw Exception('Location services are disabled.');
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        throw Exception('Location permissions are denied');
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      throw Exception('Location permissions are permanently denied.');
-    }
-
-    return await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
   }
 }
